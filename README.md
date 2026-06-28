@@ -126,3 +126,5 @@ This project uses:
 - `express`: Web framework used to create the webhook endpoint.
 
 ## Images
+<img width="1117" height="287" alt="image" src="https://github.com/user-attachments/assets/e02eac8f-3c91-4461-8977-711aa6389629" />
+

@@ -89,9 +89,16 @@ messaging-lab/
 
 ## Images
 
-```md
+<img width="1079" height="71" alt="image" src="https://github.com/user-attachments/assets/d56928ef-8d37-40c3-83af-d692e9a044b4" />
 
-```
+<img width="909" height="335" alt="image" src="https://github.com/user-attachments/assets/63ba39ba-4343-418f-b7f8-eb570fe5b6ff" />
+
+<img width="759" height="346" alt="image" src="https://github.com/user-attachments/assets/a6309bc5-7795-48e8-abf4-3e923ac7ae5c" />
+
+<img width="583" height="605" alt="image" src="https://github.com/user-attachments/assets/ac4bf71a-0cbe-46ed-94dc-80af7a2840a6" />
+
+<img width="914" height="351" alt="image" src="https://github.com/user-attachments/assets/bf54b7af-2c5c-4b08-844a-bda4f7b2e874" />
+
 
 ## RabbitMQ Management UI
 

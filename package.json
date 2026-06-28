@@ -1,0 +1,17 @@
+{
+    "name": "kafka-project",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "start:producer": "tsx producer.ts",
+        "start:consumer": "tsx consumer.ts",
+        "start:kafka": "docker compose up -d"
+    },
+    "dependencies": {
+        "kafkajs": "^2.2.4"
+    },
+    "devDependencies": {
+        "tsx": "^4.19.0",
+        "typescript": "^5.5.0"
+    }
+}

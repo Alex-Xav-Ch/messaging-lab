@@ -1,0 +1,27 @@
+{
+  "name": "p4-rabbitmq",
+  "version": "1.0.0",
+  "description": "Basic RabbitMQ example",
+  "main": "producer.js",
+  "scripts": {
+    "rabbit:start": "docker compose -p p4-rabbitmq up -d",
+    "rabbit:stop": "docker compose -p p4-rabbitmq down",
+    "producer": "node producer.js",
+    "consumer": "node consumer.js"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Xav-Ch/messaging-lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Alex-Xav-Ch/messaging-lab/issues"
+  },
+  "homepage": "https://github.com/Alex-Xav-Ch/messaging-lab#readme"
+}

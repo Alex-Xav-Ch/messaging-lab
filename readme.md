@@ -1,5 +1,5 @@
-# 🔌 Example 2 — Socket.IO
-
+#  Example 2 — Socket.IO
+# 
 > **Proof of Concept:** The server emits `"Hola Mundo"` automatically when a client connects, and the client receives it through Socket.IO's event system.
 
 ---

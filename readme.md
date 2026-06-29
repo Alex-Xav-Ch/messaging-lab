@@ -1,51 +1,51 @@
-# 📡 Ejemplo 1 — WebSocket Nativo (ws)
+# 📡 Example 1 — Native WebSocket (ws)
 
-> **Prueba de Concepto:** El cliente envía `"Hola Mundo"` y el servidor responde `"Hola Cliente"` usando el protocolo WebSocket puro.
-
----
-
-## 📋 Tabla de Contenidos
-
-- [¿Qué es WebSocket?](#qué-es-websocket)
-- [Arquitectura del Proyecto](#arquitectura-del-proyecto)
-- [Estructura de Archivos](#estructura-de-archivos)
-- [Requisitos Previos](#requisitos-previos)
-- [Instalación](#instalación)
-- [Cómo Ejecutar](#cómo-ejecutar)
-- [Flujo de Comunicación](#flujo-de-comunicación)
-- [Código Explicado](#código-explicado)
-- [Salida Esperada](#salida-esperada)
-- [Errores Comunes](#errores-comunes)
-- [Conceptos Clave](#conceptos-clave)
+> **Proof of Concept:** The client sends `"Hola Mundo"` and the server replies `"Hola Cliente"` using the raw WebSocket protocol.
 
 ---
 
-## ¿Qué es WebSocket?
+## 📋 Table of Contents
 
-WebSocket es un **protocolo de comunicación bidireccional** que opera sobre una única conexión TCP persistente. A diferencia de HTTP (que es petición/respuesta), WebSocket mantiene el canal abierto para que ambas partes puedan enviarse mensajes en cualquier momento.
+- [What is WebSocket?](#what-is-websocket)
+- [Project Architecture](#project-architecture)
+- [File Structure](#file-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [How to Run](#how-to-run)
+- [Communication Flow](#communication-flow)
+- [Code Explained](#code-explained)
+- [Expected Output](#expected-output)
+- [Common Errors](#common-errors)
+- [Key Concepts](#key-concepts)
+
+---
+
+## What is WebSocket?
+
+WebSocket is a **bidirectional communication protocol** that operates over a single persistent TCP connection. Unlike HTTP (which is request/response), WebSocket keeps the channel open so both sides can send messages at any time.
 
 ```
-HTTP (tradicional):          WebSocket:
-Cliente → Petición           Cliente ←→ Servidor
-Servidor → Respuesta         (canal siempre abierto)
-(conexión cerrada)
+HTTP (traditional):          WebSocket:
+Client → Request             Client ←→ Server
+Server → Response            (channel always open)
+(connection closed)
 ```
 
-La librería **`ws`** es la implementación más popular de WebSocket para Node.js: rápida, ligera y sin dependencias adicionales.
+The **`ws`** library is the most popular WebSocket implementation for Node.js: fast, lightweight, and with no additional dependencies.
 
 ---
 
-## Arquitectura del Proyecto
+## Project Architecture
 
 ```
 ┌─────────────────────────────────────────────────┐
 │                                                 │
-│   CLIENTE (cliente.js)    SERVIDOR (servidor.js)│
+│   CLIENT (client.js)      SERVER (server.js)    │
 │                                                 │
 │   ┌──────────┐            ┌──────────────────┐  │
 │   │          │──"Hola────▶│                  │  │
 │   │ WebSocket│  Mundo"    │  WebSocketServer │  │
-│   │  Client  │            │   Puerto 8080    │  │
+│   │  Client  │            │   Port 8080      │  │
 │   │          │◀──"Hola ───│                  │  │
 │   └──────────┘   Cliente" └──────────────────┘  │
 │                                                 │
@@ -55,81 +55,81 @@ La librería **`ws`** es la implementación más popular de WebSocket para Node.
 
 ---
 
-## Estructura de Archivos
+## File Structure
 
 ```
 ejemplo1-websocket/
 │
-├── 📄 servidor.js      → Inicia el servidor WebSocket en el puerto 8080
-├── 📄 cliente.js       → Se conecta y envía "Hola Mundo"
-└── 📄 package.json     → Metadatos del proyecto y dependencias
+├── 📄 servidor.js      → Starts the WebSocket server on port 8080
+├── 📄 cliente.js       → Connects and sends "Hola Mundo"
+└── 📄 package.json     → Project metadata and dependencies
 ```
 
 ---
 
-## Requisitos Previos
+## Prerequisites
 
-Antes de comenzar, asegúrate de tener instalado:
+Make sure you have the following installed:
 
-| Herramienta | Versión mínima | Verificar con       | Descargar                        |
-|-------------|----------------|---------------------|----------------------------------|
-| Node.js     | v14 o superior | `node -v`           | https://nodejs.org               |
-| npm         | v6 o superior  | `npm -v`            | (incluido con Node.js)           |
+| Tool    | Minimum Version | Check with | Download               |
+|---------|-----------------|------------|------------------------|
+| Node.js | v14 or higher   | `node -v`  | https://nodejs.org     |
+| npm     | v6 or higher    | `npm -v`   | (bundled with Node.js) |
 
 ---
 
-## Instalación
+## Installation
 
-### Paso 1 — Entra a la carpeta del proyecto
+### Step 1 — Enter the project folder
 
 ```bash
 cd ejemplo1-websocket
 ```
 
-### Paso 2 — Instala las dependencias
+### Step 2 — Install dependencies
 
 ```bash
 npm install
 ```
 
-Esto descarga e instala la librería `ws` (WebSocket) listada en `package.json`.
+This downloads and installs the `ws` library listed in `package.json`.
 
-**¿Qué se instala?**
+**What gets installed?**
 
-| Paquete | Versión   | Para qué sirve                              |
-|---------|-----------|---------------------------------------------|
-| `ws`    | `^8.18.0` | Implementación WebSocket para Node.js       |
+| Package | Version   | Purpose                              |
+|---------|-----------|--------------------------------------|
+| `ws`    | `^8.18.0` | WebSocket implementation for Node.js |
 
-Una vez completado verás una carpeta `node_modules/` creada automáticamente.
+Once complete, a `node_modules/` folder will be created automatically.
 
 ---
 
-## Cómo Ejecutar
+## How to Run
 
-> ⚠️ **Importante:** Necesitas **dos terminales abiertas al mismo tiempo**.
+> ⚠️ **Important:** You need **two terminals open at the same time**.
 
-### Terminal 1 — Iniciar el Servidor
+### Terminal 1 — Start the Server
 
 ```bash
 node servidor.js
 ```
 
-Debes ver:
+You should see:
 ```
 ✅ Servidor WebSocket corriendo en ws://localhost:8080
 ```
 
-El servidor queda **esperando conexiones**. No lo cierres.
+The server is now **waiting for connections**. Do not close it.
 
 ---
 
-### Terminal 2 — Ejecutar el Cliente
+### Terminal 2 — Run the Client
 
 ```bash
 node cliente.js
 ```
 
-Debes ver:
+You should see:
 ```
 ✅ Conectado al servidor
 📤 Mensaje enviado: "Hola Mundo"
@@ -137,7 +137,7 @@ Debes ver:
 🔌 Conexión cerrada
 ```
 
-Y en la Terminal 1 (servidor) aparecerá:
+And in Terminal 1 (server):
 ```
 🔌 Cliente conectado
 📨 Mensaje recibido: "Hola Mundo"
@@ -147,50 +147,50 @@ Y en la Terminal 1 (servidor) aparecerá:
 
 ---
 
-## Flujo de Comunicación
+## Communication Flow
 
 ```
-CLIENTE                          SERVIDOR
+CLIENT                           SERVER
    │                                │
-   │──── Intento de conexión ──────▶│
-   │                                │  Evento: "connection"
-   │◀─── Handshake completado ──────│
+   │──── Connection attempt ───────▶│
+   │                                │  Event: "connection"
+   │◀─── Handshake complete ────────│
    │                                │
-   │  Evento: "open"                │
+   │  Event: "open"                 │
    │──── "Hola Mundo" ────────────▶│
-   │                                │  Evento: "message"
+   │                                │  Event: "message"
    │                                │  data = "Hola Mundo"
    │◀─── "Hola Cliente" ───────────│
    │                                │
-   │  Evento: "message"             │
+   │  Event: "message"              │
    │  data = "Hola Cliente"         │
    │                                │
    │──── close() ─────────────────▶│
-   │                                │  Evento: "close"
-   │  Evento: "close"               │
+   │                                │  Event: "close"
+   │  Event: "close"                │
    │                                │
 ```
 
 ---
 
-## Código Explicado
+## Code Explained
 
 ### `servidor.js`
 
 ```javascript
 const { WebSocketServer } = require("ws");
 ```
-Importa la clase `WebSocketServer` del paquete `ws`.
+Imports the `WebSocketServer` class from the `ws` package.
 
 ```javascript
 const wss = new WebSocketServer({ port: 8080 });
 ```
-Crea un servidor WebSocket que escucha en el puerto `8080`.
+Creates a WebSocket server listening on port `8080`.
 
 ```javascript
 wss.on("connection", (socket) => { ... });
 ```
-Evento que se dispara **cada vez que un cliente se conecta**. El parámetro `socket` es la instancia individual de ese cliente.
+Event fired **every time a client connects**. The `socket` parameter is that client's individual instance.
 
 ```javascript
 socket.on("message", (data) => {
@@ -198,7 +198,7 @@ socket.on("message", (data) => {
   socket.send("Hola Cliente");
 });
 ```
-Escucha los mensajes del cliente. Los datos llegan como `Buffer`, por eso se usa `.toString()`. Luego responde con `socket.send()`.
+Listens for messages from the client. Data arrives as a `Buffer`, so `.toString()` is used to read it. Then responds with `socket.send()`.
 
 ---
 
@@ -207,14 +207,14 @@ Escucha los mensajes del cliente. Los datos llegan como `Buffer`, por eso se usa
 ```javascript
 const socket = new WebSocket("ws://localhost:8080");
 ```
-Crea una conexión al servidor. El protocolo es `ws://` (o `wss://` para versión segura con TLS).
+Creates a connection to the server. The protocol is `ws://` (or `wss://` for a secure TLS version).
 
 ```javascript
 socket.on("open", () => {
   socket.send("Hola Mundo");
 });
 ```
-El evento `"open"` confirma que la conexión fue exitosa. Solo entonces se envía el mensaje.
+The `"open"` event confirms the connection was successful. Only then is the message sent.
 
 ```javascript
 socket.on("message", (data) => {
@@ -222,13 +222,13 @@ socket.on("message", (data) => {
   socket.close();
 });
 ```
-Recibe la respuesta del servidor y cierra la conexión.
+Receives the server's response and closes the connection.
 
 ---
 
-## Salida Esperada
+## Expected Output
 
-### Terminal del Servidor
+### Server Terminal
 ```
 ✅ Servidor WebSocket corriendo en ws://localhost:8080
 🔌 Cliente conectado
@@ -237,7 +237,7 @@ Recibe la respuesta del servidor y cierra la conexión.
 ❌ Cliente desconectado
 ```
 
-### Terminal del Cliente
+### Client Terminal
 ```
 ✅ Conectado al servidor
 📤 Mensaje enviado: "Hola Mundo"
@@ -247,21 +247,21 @@ Recibe la respuesta del servidor y cierra la conexión.
 
 ---
 
-## Errores Comunes
+## Common Errors
 
 ### ❌ `Error: connect ECONNREFUSED 127.0.0.1:8080`
 
-**Causa:** El cliente intentó conectarse pero el servidor no estaba corriendo.
+**Cause:** The client tried to connect but the server was not running.
 
-**Solución:** Asegúrate de iniciar `servidor.js` **antes** que `cliente.js`.
+**Fix:** Make sure to start `servidor.js` **before** `cliente.js`.
 
 ---
 
 ### ❌ `Error: Cannot find module 'ws'`
 
-**Causa:** No se instalaron las dependencias.
+**Cause:** Dependencies were not installed.
 
-**Solución:**
+**Fix:**
 ```bash
 npm install
 ```
@@ -270,12 +270,12 @@ npm install
 
 ### ❌ `Error: listen EADDRINUSE :::8080`
 
-**Causa:** El puerto 8080 ya está en uso por otro proceso.
+**Cause:** Port 8080 is already in use by another process.
 
-**Solución:** Cambia el puerto en ambos archivos:
+**Fix:** Change the port in both files:
 ```javascript
 // servidor.js
-const PORT = 9090; // Elige otro puerto libre
+const PORT = 9090; // Pick any free port
 
 // cliente.js
 const socket = new WebSocket("ws://localhost:9090");
@@ -283,15 +283,15 @@ const socket = new WebSocket("ws://localhost:9090");
 
 ---
 
-## Conceptos Clave
+## Key Concepts
 
-| Término          | Significado                                                                          |
+| Term             | Meaning                                                                              |
 |------------------|--------------------------------------------------------------------------------------|
-| `WebSocket`      | Protocolo de comunicación bidireccional y persistente sobre TCP                      |
-| `ws://`          | Esquema de URL para conexiones WebSocket (sin cifrado)                               |
-| `wss://`         | Esquema de URL para WebSocket seguro con TLS (equivalente a HTTPS)                   |
-| `Handshake`      | Proceso inicial donde HTTP se "actualiza" a WebSocket (`Upgrade: websocket`)         |
-| `socket.send()`  | Método para enviar un mensaje a través de la conexión WebSocket                      |
-| `socket.close()` | Cierra la conexión de forma limpia                                                   |
-| `Buffer`         | Tipo de dato en Node.js para datos binarios; los mensajes WS llegan como Buffer      |
-| Puerto `8080`    | Puerto por convención para servidores WebSocket de desarrollo                        |
+| `WebSocket`      | Bidirectional, persistent communication protocol over TCP                            |
+| `ws://`          | URL scheme for WebSocket connections (no encryption)                                 |
+| `wss://`         | URL scheme for secure WebSocket with TLS (equivalent to HTTPS)                       |
+| `Handshake`      | Initial process where HTTP is "upgraded" to WebSocket (`Upgrade: websocket`)         |
+| `socket.send()`  | Method to send a message over the WebSocket connection                               |
+| `socket.close()` | Gracefully closes the connection                                                     |
+| `Buffer`         | Node.js data type for binary data; WebSocket messages arrive as Buffers              |
+| Port `8080`      | Conventional port for development WebSocket servers                                  |

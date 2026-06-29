@@ -1,0 +1,13 @@
+{
+  "name": "ejemplo2-socketio",
+  "version": "1.0.0",
+  "description": "POC Socket.IO",
+  "scripts": {
+    "servidor": "node servidor.js",
+    "cliente": "node cliente.js"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  }
+}

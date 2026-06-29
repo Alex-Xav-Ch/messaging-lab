@@ -1,0 +1,12 @@
+{
+  "name": "ejemplo1-websocket",
+  "version": "1.0.0",
+  "description": "POC WebSocket nativo",
+  "scripts": {
+    "servidor": "node servidor.js",
+    "cliente": "node cliente.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
